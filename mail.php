@@ -19,14 +19,14 @@ function odesli_mail($komu, $predmet, $telo,$kontakt) {
 		$subject = "=?utf-8?B?" . base64_encode($predmet) . "?="; 
 		
 		$hlavicka = "MIME-Version: 1.0\n";
-		//$hlavicka.= "Content-Type: text/html; charset=\"utf-8\"\n";
+		$hlavicka.= "Content-Type: text/html; charset=\"utf-8\"\n";
 		$hlavicka.= "From: ".$kontakt."\n";
 		$hlavicka.= "Reply-To: ".$kontakt."\n";
 		$hlavicka.= "X-Mailer: PHP/: ".phpversion()."\n";
 		$hlavicka .= "Content-Type: multipart/alternative;boundary=" . $boundary . "\r\n";
 		
 		
-		//here is the content body
+		
 		$message = "This is a MIME encoded message.";
 		$message .= "\r\n\r\n--" . $boundary . "\r\n";
 		$message .= "Content-type: text/plain;charset=utf-8\r\n\r\n";
@@ -43,7 +43,7 @@ function odesli_mail($komu, $predmet, $telo,$kontakt) {
 		$message .= "\r\n\r\n--" . $boundary . "--";
 		
 		
-		$url = '"https://www.oknaorsag.cz"';
+		//$url = '"https://www.oknaorsag.cz"';  //pripadne url kam odejit
 		
 		if(mail($komu, $subject, $message, $hlavicka)) {
 			echo "<script type='text/javascript'>alert('Vaše zpráva byla uspěšně odeslána. Děkujeme za zprávu.');window.location.href={$url};</script>";
